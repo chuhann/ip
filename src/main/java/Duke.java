@@ -55,21 +55,20 @@ public class Duke {
                     System.out.println("Opps Error");
                 }
             } else if(line.startsWith("todo ")){
-
-                // Add items to list
-                //Task task = new Task(line, false);
+                // Add items to Todo list
                 line = line.replace("todo ","");
+
                 Todo todo = new Todo(line);
                 inventory.add(todo);
                 System.out.println("Got it. I've added this task: ");
                 System.out.println(todo);
                 System.out.println("Now you have "+inventory.size()+" tasks in the list.\n");
             } else if (line.startsWith("deadline ")){
+                //Add items to Deadline list
                 line = line.replace("deadline ","");
                 by = line.substring(line.lastIndexOf("/by") + 1);
                 line = line.substring(0,line.lastIndexOf("/by "));
                 by = by.replace("by ","");
-
 
                 Deadline deadline = new Deadline(line, by);
                 inventory.add(deadline);
@@ -77,6 +76,7 @@ public class Duke {
                 System.out.println(deadline);
                 System.out.println("Now you have "+inventory.size()+" tasks in the list.\n");
             } else if (line.startsWith("event ")){
+                //Add items to Event list
                 line = line.replace("event ","");
                 at = line.substring(line.lastIndexOf("/at ") + 1);
                 line = line.substring(0,line.lastIndexOf("/at "));

@@ -1,6 +1,6 @@
 public class Task {
-    private String items;
-    private Boolean isChecked;
+    protected String items;
+    protected Boolean isChecked;
     protected String tag;
 
     public Task(String items){
