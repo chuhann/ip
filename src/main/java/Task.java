@@ -1,10 +1,11 @@
 public class Task {
     private String items;
     private Boolean isChecked;
+    protected String tag;
 
-    public Task(String items, Boolean isChecked){
+    public Task(String items){
         this.items = items;
-        this.isChecked = isChecked;
+        this.isChecked = false;
     }
 
     public String getItems() {
@@ -21,6 +22,16 @@ public class Task {
 
     public void setIsChecked(Boolean isChecked) {
         this.isChecked = isChecked;
+    }
+
+    @Override
+    public String toString(){
+        if (isChecked){
+            return "[✓] " + this.items;
+        }else{
+            return "[✗] " + this.items;
+        }
+
     }
 }
 
