@@ -5,9 +5,10 @@ public class Task {
     protected Boolean isChecked;
     protected String tag;
 
-    public Task(String items){
+    public Task(String items, String tag){
         this.items = items;
         this.isChecked = false;
+        this.tag = tag;
     }
 
     public String getItems() {
@@ -24,6 +25,14 @@ public class Task {
 
     public void setIsChecked(Boolean isChecked) {
         this.isChecked = isChecked;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
     @Override

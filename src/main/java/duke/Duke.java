@@ -1,5 +1,6 @@
 package duke;
 
+import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -31,12 +32,33 @@ public class Duke {
             System.out.println("Nice! I've marked this task as done: ");
             System.out.println(inventory.get(index)+"\n");
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Item is not in List ! Please try with another valid index");
+            System.out.println("Item is not in List ! Please try with another valid index\n");
         }catch(NumberFormatException e){
-            System.out.println("Please enter a valid number !");
+            System.out.println("Please enter a valid number !\n");
         }
     }
 
+    /***
+     * Remove item from the inventory
+     *
+     * @param line line of command string
+     * @param inventory inventory of all items
+     */
+    public static void deleteItem(String line, ArrayList<Task> inventory){
+        try {
+            line = line.replace("delete ","");
+            int index = Integer.parseInt(line) -1;
+            inventory.get(index);
+            System.out.println("Noted. I've removed this task:");
+            System.out.println(inventory.get(index));
+            inventory.remove(index);
+            System.out.println("Now you have "+inventory.size()+" tasks in the list.\n");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Item is not in List ! Please try with another valid index\n");
+        }catch(NumberFormatException e){
+            System.out.println("Please enter a valid number !\n");
+        }
+    }
     /**
      * Add todo item into inventory
      *
@@ -56,7 +78,7 @@ public class Duke {
             System.out.println(todo);
             System.out.println("Now you have "+inventory.size()+" tasks in the list.\n");
         } catch (TaskException e) {
-            System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+            System.out.println("☹ OOPS!!! The description of a todo cannot be empty.\n");
         }
     }
 
@@ -85,9 +107,9 @@ public class Duke {
             System.out.println(deadline);
             System.out.println("Now you have "+inventory.size()+" tasks in the list.\n");
         } catch (TaskException e) {
-            System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.");
+            System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.\n");
         }catch (StringIndexOutOfBoundsException e){
-            System.out.println("Please use '/by' to specify date");
+            System.out.println("Please use '/by' to specify date\n");
         }
     }
 
@@ -114,11 +136,13 @@ public class Duke {
             System.out.println(event);
             System.out.println("Now you have "+inventory.size()+" tasks in the list.\n");
         } catch (TaskException e) {
-            System.out.println("☹ OOPS!!! The description of a event cannot be empty.");
+            System.out.println("☹ OOPS!!! The description of a event cannot be empty.\n");
         } catch (StringIndexOutOfBoundsException e){
-            System.out.println("Please use '/at' to specify date");
+            System.out.println("Please use '/at' to specify date\n");
         }
     }
+
+
 
     public static void main(String[] args) {
         String intro = "Hello! I'm Duke\n" +
@@ -148,7 +172,14 @@ public class Duke {
                 } else if (line.startsWith("event")){
                     //Add items to Event list
                     eventTask(line, inventory);
-                }else{
+                }else if (line.startsWith("delete")){
+                    //Delete items in Inventory
+                    deleteItem(line, inventory);
+                }else if(line.equals("save")){
+                    //Save records to file
+                    //saveToFile(inventory);
+                }
+                else{
                     //Invalid command
                     throw new DukeException();
                 }
