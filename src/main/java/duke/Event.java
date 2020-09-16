@@ -6,7 +6,7 @@ public class Event extends Task {
     //protected String tag;
 
     public Event(String description, String at) {
-        super(description,"E");
+        super(description,"E", at);
         this.at = at;
     }
 

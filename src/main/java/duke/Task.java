@@ -4,11 +4,21 @@ public class Task {
     protected String items;
     protected Boolean isChecked;
     protected String tag;
+    protected String duration;
 
-    public Task(String items, String tag){
+    public Task(String items, String tag, String duration){
         this.items = items;
         this.isChecked = false;
         this.tag = tag;
+        this.duration = duration;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 
     public String getItems() {

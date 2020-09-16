@@ -142,14 +142,83 @@ public class Duke {
         }
     }
 
+    /**
+     * Saves record to a file
+     *
+     * @param inventory inventory of all items
+     */
+    public static void saveToFile(ArrayList<Task> inventory){
+        String records = "";
+        for(int i = 0; i < inventory.size(); i++){
+            records += inventory.get(i).getTag() +" | ";
+            records += (boolean)inventory.get(i).getIsChecked()+" | ";
+            records += inventory.get(i).getItems();
+            if(inventory.get(i).getTag().equals("D") || inventory.get(i).getTag().equals("E")){
+                records += " | "+inventory.get(i).getDuration();
+            }
+            records += "\n";
+        }
+        try {
+            System.out.println(records);
+            File file = new File("C:\\Users\\chuha\\Documents\\ip\\filename.txt");
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            writer.write(records);
+            System.out.println("Records saved in :"+file.getName());
+            writer.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found !\n");
+        } catch (IOException e) {
+            System.out.println("File cannot be opened !\n");
+        }
+    }
 
+    /**
+     * Reads record from a file
+     *
+     * @param inventory inventory of all items
+     * @return updated inventory
+     */
+    public static ArrayList<Task> readFromFile(ArrayList<Task> inventory){
+        File file = new File("C:\\Users\\chuha\\Documents\\ip\\filename.txt");
+        if(file.exists()){
+            try {
+                String strCurrentLine;
 
+                BufferedReader reader = new BufferedReader(new FileReader(file));
+                while ((strCurrentLine = reader.readLine()) != null) {
+                    String record [] = strCurrentLine.split(" \\| ");
+                    if(record[0].equals("T")){
+                        Todo todo = new Todo(record[2]);
+                        todo.isChecked = Boolean.parseBoolean(record[1]);
+                        inventory.add(todo);
+                    }else if(record[0].equals("D")){
+                        Deadline deadline = new Deadline(record[2], record[3]);
+                        deadline.isChecked = Boolean.parseBoolean(record[1]);
+                        inventory.add(deadline);
+                    }else if(record[0].equals("E")){
+                        Event event = new Event(record[2], record[3]);
+                        event.isChecked = Boolean.parseBoolean(record[1]);
+                        inventory.add(event);
+                    }
+
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println("File not found !\n");
+            }catch (IOException e) {
+                System.out.println("File cannot be opened !\n");
+            }
+        }
+        return inventory;
+    }
     public static void main(String[] args) {
         String intro = "Hello! I'm Duke\n" +
                 "What can I do for you?\n";
         String bye = "Bye. Hope to see you again soon!\n";
         ArrayList<Task> inventory = new ArrayList<Task>(100);
-
+        inventory = readFromFile(inventory);
         System.out.println(intro);
         Scanner in = new Scanner(System.in);
         String line = in.nextLine();
@@ -177,7 +246,7 @@ public class Duke {
                     deleteItem(line, inventory);
                 }else if(line.equals("save")){
                     //Save records to file
-                    //saveToFile(inventory);
+                    saveToFile(inventory);
                 }
                 else{
                     //Invalid command

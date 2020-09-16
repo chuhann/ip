@@ -1,0 +1,7 @@
+T | false | read book
+D | false | return book | June 6th
+E | false | project meeting | Aug 6th 2-4pm
+T | true | join sports club
+T | false | project
+D | false | assignment 1  | sept 23rd
+E | false | meetup  | sept 25th

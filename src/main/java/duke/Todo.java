@@ -5,7 +5,7 @@ public class Todo extends Task {
     protected String tag;
 
     public Todo(String description){
-        super(description, "T");
+        super(description, "T", null);
         this.description = description;
     }
 
