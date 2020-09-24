@@ -164,7 +164,24 @@ import java.util.ArrayList;
             storage.saveToFile(inventory);
         }
 
+        /**
+         * Find a task by searching for a keyword
+         * @param line
+         */
+        public void findItem(String line) {
+            int count = 1;
+            System.out.println("Here are the matching tasks in your list: ");
+            line = line.replace("find", "").trim();
+            for (int i = 0; i < inventory.size(); i++) {
+                if (inventory.get(i).getItems().contains(line)) {
+                    System.out.print(count + ".");
+                    System.out.println(inventory.get(i));
+                    count ++;
+                }
 
+            }
+
+        }
     }
 
 
