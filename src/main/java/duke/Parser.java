@@ -20,6 +20,8 @@ public class Parser {
             command = "event";
         } else if (line.startsWith("delete")) {
             command = "delete";
+        }else if (line.startsWith("find")){
+            command = "find";
         }
         try {
             switch(command){
@@ -40,6 +42,9 @@ public class Parser {
                     break;
                 case "delete":
                     tasks.deleteItem(line);
+                    break;
+                case "find":
+                    tasks.findItem(line);
                     break;
                 default:
                     throw new DukeException();

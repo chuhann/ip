@@ -1,11 +1,13 @@
 package duke;
 
+import java.time.LocalDate;
+
 public class Event extends Task {
 
-    protected String at;
+    protected LocalDate  at;
     //protected String tag;
 
-    public Event(String description, String at) {
+    public Event(String description, LocalDate at) {
         super(description,"E", at);
         this.at = at;
     }

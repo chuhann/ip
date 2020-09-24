@@ -1,23 +1,25 @@
 package duke;
 
+import java.time.LocalDate;
+
 public class Task {
     protected String items;
     protected Boolean isChecked;
     protected String tag;
-    protected String duration;
+    protected LocalDate  duration;
 
-    public Task(String items, String tag, String duration){
+    public Task(String items, String tag, LocalDate  duration){
         this.items = items;
         this.isChecked = false;
         this.tag = tag;
         this.duration = duration;
     }
 
-    public String getDuration() {
+    public LocalDate getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(LocalDate  duration) {
         this.duration = duration;
     }
 

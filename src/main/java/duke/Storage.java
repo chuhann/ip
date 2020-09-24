@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 
@@ -69,11 +70,11 @@ public class Storage {
                         todo.isChecked = Boolean.parseBoolean(record[1]);
                         inventory.add(todo);
                     } else if (record[0].equals("D")) {
-                        Deadline deadline = new Deadline(record[2], record[3]);
+                        Deadline deadline = new Deadline(record[2], LocalDate.parse(record[3]));
                         deadline.isChecked = Boolean.parseBoolean(record[1]);
                         inventory.add(deadline);
                     } else if (record[0].equals("E")) {
-                        Event event = new Event(record[2], record[3]);
+                        Event event = new Event(record[2], LocalDate.parse(record[3]));
                         event.isChecked = Boolean.parseBoolean(record[1]);
                         inventory.add(event);
                     }
