@@ -110,10 +110,8 @@ import java.util.ArrayList;
                 by = line.substring(line.lastIndexOf("/by") + 1);
                 line = line.substring(0, line.lastIndexOf("/by "));
                 by = by.replace("by ", "");
-                System.out.println("BY  : "+by);
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate localDate = LocalDate.parse(by, formatter);
-                System.out.println("localDate  : "+localDate);
                 Deadline deadline = new Deadline(line, localDate);
                 inventory.add(deadline);
                 System.out.println("Got it. I've added this task: ");
@@ -148,7 +146,6 @@ import java.util.ArrayList;
 
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate localDate = LocalDate.parse(at, formatter);
-                System.out.println("localDate  : "+localDate);
 
                 Event event = new Event(line, localDate);
                 inventory.add(event);
@@ -181,7 +178,7 @@ import java.util.ArrayList;
                 }
 
             }
-
+            System.out.println();
         }
     }
 

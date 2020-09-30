@@ -30,6 +30,6 @@ public class Duke {
         ui.printEnd();
     }
     public static void main(String[] args) {
-        new Duke("C:\\Users\\chuha\\Documents\\ip\\filename.txt").run();
+        new Duke("duke.txt").run();
     }
 }

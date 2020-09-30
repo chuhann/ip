@@ -57,8 +57,9 @@ public class Storage {
      */
     public ArrayList<Task> readFromFile(ArrayList<Task> inventory) {
         File file = new File(filePath);
-        if (file.exists()) {
-            try {
+
+        try {
+            if (file.exists()) {
                 String strCurrentLine;
 
                 BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -79,12 +80,17 @@ public class Storage {
                     }
 
                 }
-            } catch (FileNotFoundException e) {
-                ui.printFileNotFound();
-            } catch (IOException e) {
-                ui.printFileNotOpened();
+            } else {
+                System.out.println(filePath);
+                file.createNewFile();
             }
+
+        } catch (FileNotFoundException e) {
+            ui.printFileNotFound();
+        } catch (IOException e) {
+            ui.printFileNotOpened();
         }
+
         return inventory;
     }
 }
