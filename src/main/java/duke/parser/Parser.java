@@ -1,4 +1,8 @@
-package duke;
+package duke.parser;
+
+import duke.exception.DukeException;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 public class Parser {
 

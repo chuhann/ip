@@ -1,4 +1,10 @@
-package duke;
+package duke.storage;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+import duke.ui.Ui;
 
 import java.io.BufferedWriter;
 import java.io.BufferedReader;
@@ -67,15 +73,15 @@ public class Storage {
                     String record[] = strCurrentLine.split(" \\| ");
                     if (record[0].equals("T")) {
                         Todo todo = new Todo(record[2]);
-                        todo.isChecked = Boolean.parseBoolean(record[1]);
+                        todo.setIsChecked(Boolean.parseBoolean(record[1]));
                         inventory.add(todo);
                     } else if (record[0].equals("D")) {
                         Deadline deadline = new Deadline(record[2], LocalDate.parse(record[3]));
-                        deadline.isChecked = Boolean.parseBoolean(record[1]);
+                        deadline.setIsChecked(Boolean.parseBoolean(record[1]));
                         inventory.add(deadline);
                     } else if (record[0].equals("E")) {
                         Event event = new Event(record[2], LocalDate.parse(record[3]));
-                        event.isChecked = Boolean.parseBoolean(record[1]);
+                        event.setIsChecked(Boolean.parseBoolean(record[1]));
                         inventory.add(event);
                     }
 
