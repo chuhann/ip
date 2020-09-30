@@ -3,11 +3,16 @@ package duke;
 public class Parser {
 
     private TaskList tasks;
+    private Ui ui = new Ui();
 
     public Parser(TaskList tasks) {
         this.tasks = tasks;
     }
 
+    /**
+     * Parses the input by user to specific commands
+     * @param line line input from user
+     */
     public void parser(String line) {
         String command = line;
         if (line.startsWith("done")) {
@@ -49,25 +54,8 @@ public class Parser {
                 default:
                     throw new DukeException();
             }
-            /*
-            if (line.equals("list")) {
-                tasks.listInventory();
-            } else if (line.startsWith("done")) {
-                tasks.checkInventory(line);
-            } else if (line.startsWith("todo")) {
-                tasks.todoTask(line);
-            } else if (line.startsWith("deadline")) {
-                tasks.deadlineTask(line);
-            } else if (line.startsWith("event")) {
-                tasks.eventTask(line);
-            } else if (line.startsWith("delete")) {
-                tasks.deleteItem(line);
-            } else {
-                throw new DukeException();
-            }
-            */
         } catch (DukeException e) {
-            System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            ui.printInvalidCommand();
         }
     }
 }

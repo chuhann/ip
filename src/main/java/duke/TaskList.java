@@ -9,6 +9,7 @@ import java.util.ArrayList;
     public class TaskList {
         private ArrayList<Task> inventory;
         private Storage storage;
+        private Ui ui = new Ui();
 
         public TaskList(Storage storage) {
             this.storage = storage;
@@ -40,9 +41,9 @@ import java.util.ArrayList;
                 System.out.println("Nice! I've marked this task as done: ");
                 System.out.println(inventory.get(index) + "\n");
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("Item is not in List ! Please try with another valid index\n");
+               ui.printItemNotInlist();
             } catch (NumberFormatException e) {
-                System.out.println("Please enter a valid number !\n");
+               ui.printValidNumber();
             }
             storage.saveToFile(inventory);
         }
@@ -62,9 +63,9 @@ import java.util.ArrayList;
                 inventory.remove(index);
                 System.out.println("Now you have " + inventory.size() + " tasks in the list.\n");
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("Item is not in List ! Please try with another valid index\n");
+                ui.printItemNotInlist();
             } catch (NumberFormatException e) {
-                System.out.println("Please enter a valid number !\n");
+                ui.printValidNumber();
             }
             storage.saveToFile(inventory);
         }
@@ -87,7 +88,7 @@ import java.util.ArrayList;
                 System.out.println(todo);
                 System.out.println("Now you have " + inventory.size() + " tasks in the list.\n");
             } catch (TaskException e) {
-                System.out.println("☹ OOPS!!! The description of a todo cannot be empty.\n");
+                ui.printTodoDescriptionEmpty();
             }
             storage.saveToFile(inventory);
         }
@@ -119,11 +120,11 @@ import java.util.ArrayList;
                 System.out.println(deadline);
                 System.out.println("Now you have " + inventory.size() + " tasks in the list.\n");
             } catch (TaskException e) {
-                System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.\n");
+                ui.printDeadlineDescriptionEmpty();
             } catch (StringIndexOutOfBoundsException e) {
-                System.out.println("Please use '/by' to specify date\n");
+                ui.printMissingByParameter();
             }catch (DateTimeParseException e){
-                System.out.println("Please enter a valid date");
+                ui.printInvalidDateFormat();
             }
             storage.saveToFile(inventory);
         }
@@ -155,11 +156,11 @@ import java.util.ArrayList;
                 System.out.println(event);
                 System.out.println("Now you have " + inventory.size() + " tasks in the list.\n");
             } catch (TaskException e) {
-                System.out.println("☹ OOPS!!! The description of a event cannot be empty.\n");
+                ui.printEventDescriptionEmpty();
             } catch (StringIndexOutOfBoundsException e) {
-                System.out.println("Please use '/at' to specify date\n");
+                ui.printMissingAtParameter();
             } catch (DateTimeParseException e){
-                System.out.println("Please enter a valid date");
+                ui.printInvalidDateFormat();
             }
             storage.saveToFile(inventory);
         }

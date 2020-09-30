@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class Storage {
     private String filePath;
+    private Ui ui = new Ui();
 
     public Storage(String filePath){
         this.filePath = filePath;
@@ -34,19 +35,17 @@ public class Storage {
             records += "\n";
         }
         try {
-            //System.out.println(records);
             File file = new File(filePath);
             if(!file.exists()){
                 file.createNewFile();
             }
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
             writer.write(records);
-           // System.out.println("Records saved in :"+file.getName());
             writer.close();
         } catch (FileNotFoundException e) {
-            System.out.println("File not found !\n");
+            ui.printFileNotFound();
         } catch (IOException e) {
-            System.out.println("File cannot be opened !\n");
+            ui.printFileNotOpened();
         }
     }
 
@@ -81,9 +80,9 @@ public class Storage {
 
                 }
             } catch (FileNotFoundException e) {
-                System.out.println("File not found !\n");
+                ui.printFileNotFound();
             } catch (IOException e) {
-                System.out.println("File cannot be opened !\n");
+                ui.printFileNotOpened();
             }
         }
         return inventory;
